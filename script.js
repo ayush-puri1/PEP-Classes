@@ -36,17 +36,32 @@
 // myArrowFunction(); // calling the arrow function
 // // all the callback functions are anonymous functions and => functions are also anonymous functions
 
-// callback functions
-let cbl = (user) => {
-    console.log(`callback is called`);
-    console.log(`Callback called with user: ${user}`);
+// // callback functions
+// let cbl = (user) => {
+//     console.log(`callback is called`);
+//     console.log(`Callback called with user: ${user}`);
 
-};
+// };
 
-function hof(username, callback) {
-    console.log(`HOF is called`);
-    return callback(username);
+// function hof(username, callback) {
+//     console.log(`HOF is called`);
+//     return callback(username);
+// }
+
+// hof("Hulk", cbl); // calling the higher-order function with a callback function
+
+// // Higher-order functions (HOFs) are functions that can take other functions as arguments or return functions as their result. In the example above, `hof` is a higher-order function that takes a username and a callback function as parameters. It calls the callback function with the provided username.
+
+
+// hof is a function that takes a parameter and returns another function (callback function). The returned function can be called later, allowing for more flexible and reusable code. In this example, `hof` is a higher-order function that returns the `cbl` function, which can be called later to execute its logic.
+function hof(params){
+    console.log(`From HOF`);
+    function cbl(params){
+        // console.log(`From callback`);
+        return `From callback`;
+    }
+    return cbl;
 }
 
-hof("Hulk", cbl); // calling the higher-order function with a callback function
-
+let resHOF = hof();
+console.log(resHOF()); // calling the returned callback function
